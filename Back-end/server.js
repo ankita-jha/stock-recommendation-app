@@ -5,6 +5,7 @@ const port = process.env.Port || 3000;
 // a MongoDB object modeling tool for Node.js - Mongoose
 const mongoose = require("mongoose");
 
+const userRoutes = require("./routes/UserRoutes");
 const mongoDBUri =
   "mongodb+srv://ankita23:myDB@cluster0.ttzjb.mongodb.net/?retryWrites=true&w=majority";
 
@@ -17,6 +18,9 @@ mongoose
 app.get("/", (req, res) => {
   res.send("Hello World!");
 });
+app.use(express.json());
+
+app.use("/api/users", userRoutes);
 
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
